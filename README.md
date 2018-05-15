@@ -169,13 +169,6 @@ Make sure to cite [3] and [4] in addition to this paper when using the data.
 
 ## Models
 
-We also provide selected pre-trained models:
-
-* [VAE Prior on SN-clean]
-* [AML on SN-clean]
-* [AML on SN-noisy]
-* [AML on KITTI]
-
 The model for [1] can be found at
 [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16).
 
