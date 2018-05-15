@@ -1,0 +1,98 @@
+{
+  "__comment": "GETTING STARTED",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "(1) download data from davidstutz/shape-completion-benchmark",
+  "__comment": "(2) adapt data_directory",
+  "__comment": "(3) run 'th encoder_train.lua'",
+  "__comment": "see README.md for more details",
+
+  "__comment": "DATA PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "data_directory": "/BS/dstutz2/work/backup/shape-completion/cvpr/data/noisy/",
+
+  "inference_training_inputs": "training_inference_inputs_10_24x32_24x54x24_noisy_large.h5",
+  "inference_training_space": "training_inference_space_10_24x32_24x54x24_noisy_large.h5",
+  "inference_training_outputs": "training_inference_outputs_10_24x32_24x54x24_noisy_large.h5",
+  "inference_training_lsdf_inputs": "training_inference_inputs_lsdf_10_24x32_24x54x24_noisy_large.h5",
+  "inference_training_lsdf_outputs": "training_inference_outputs_lsdf_10_24x32_24x54x24_noisy_large.h5",
+
+  "inference_training_statistics": "real_space_statistics_training_prior.h5",
+
+  "validation_inputs": "validation_inputs_6_24x32_24x54x24_noisy_large.h5",
+  "validation_space": "validation_space_6_24x32_24x54x24_noisy_large.h5",
+  "validation_outputs": "validation_outputs_6_24x32_24x54x24_noisy_large.h5",
+  "validation_lsdf_inputs": "validation_inputs_lsdf_6_24x32_24x54x24_noisy_large.h5",
+  "validation_lsdf_outputs": "validation_outputs_lsdf_6_24x32_24x54x24_noisy_large.h5",
+
+  "__comment": "TRAINING PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "criteria": ["occpointbce", "occspacebce", "sdfpointbce", "sdfspacebce"],
+  "weights": [0.25, 0.25, 0.25, 0.25],
+  "weighted": true,
+
+  "__comment": "whether to re-intialize the encoder using the settings below",
+  "reinitialize_encoder": true,
+
+  "__comment": "weight for prior on the code",
+  "prior_weight": 50,
+
+  "__comment": "learning rate to employ",
+  "learning_rate": 0.0000001,
+  "__comment": "momentum parameter",
+  "momentum": 0.5,
+  "__comment": "weight decay parameters",
+  "weight_decay": 0.000001,
+  "__comment": "batch size",
+  "batch_size": 16,
+  "__comment": "number of epochs",
+  "epochs": 1,
+  "__comment": "initialization scheme to use for weights, see init.lua",
+  "weight_initialization": "normal",
+  "__comment": "if 'fixed' or 'normal' is chosen",
+  "weight_value": 0.01,
+  "__comment": "initialization scheme to use for biases, see init.lua",
+  "bias_initialization": "normal",
+  "__comment": "if 'fixed' is chosen",
+  "bias_value": 0.01,
+
+  "__comment": "every decay_iterations iteration, the learning rate and momentum is updated",
+  "decay_iterations": 500,
+  "__comment": "learning rate is mulitplied by this value each decay_iterations",
+  "decay_learning_rate": 0.9,
+  "__comment": "minimum learning rate allowed",
+  "minimum_learning_rate": 0.000000001,
+  "__comment": "momentum is multiplied by this value each decay_iterations",
+  "decay_momentum": 1.1,
+  "__comment": "maximum momentum allowed",
+  "maximum_momentum": 0.9,
+
+  "__comment": "report a smoothed loss every loss_iterations iterations",
+  "loss_iterations": 10,
+
+  "__comment": "model is tested on validation set every test_iterations iterations",
+  "test_iterations": 10000,
+
+  "__comment": "OUTPUT PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "base directory for all output files",
+  "base_directory": "noisy/",
+
+  "__comment": "model file inside base_directory",
+  "prior_model_file": "prior_model.dat",
+  "__comment": "model file inside base_directory",
+  "inference_model_file": "inference_model.dat",
+  "__comment": "directory in base_directory to hold OFF files derived from predicted SDFs",
+  "off_directory": "off/",
+  "__comment": "directory in base_directory to hold BINVOX files",
+  "binvox_directory": "binvox/",
+  "__comment": "file to save occupancy results",
+  "results_file": "results.txt",
+
+  "__comment": "file to save protocol of training in",
+  "train_protocol_file": "train_protocol.h5",
+  "val_protocol_file": "val_protocol.h5"
+}

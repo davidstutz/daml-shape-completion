@@ -1,0 +1,37 @@
+{
+  "__comment": "GETTING STARTED",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "(1) download data from davidstutz/shape-completion-benchmark",
+  "__comment": "(2) adapt data_directory",
+  "__comment": "(3) run 'th vae_test.lua'",
+  "__comment": "see README.md for more details",
+
+  "__comment": "DATA PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "data_directory": "/BS/dstutz2/work/backup/shape-completion/cvpr/data/kitti/",
+
+  "validation_inputs": "input_validation_gt_padding_1_24x54x24_f.h5",
+  "validation_space": "part_space_validation_gt_padding_1_24x54x24_f.h5",
+  "validation_lsdf_inputs": "input_lsdf_validation_gt_padding_1_24x54x24_f.h5",
+
+  "validation_txt_directory": "bounding_boxes_txt_validation_gt_padding_1_24x54x24",
+  "validation_gt_directory": "velodyne_gt_txt_validation_gt_padding_1_24x54x24",
+
+  "__comment": "OUTPUT PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "base directory for all output files",
+  "base_directory": "kitti/",
+
+  "__comment": "model file inside base_directory",
+  "inference_model_file": "inference_model.dat",
+  "__comment": "directory in base_directory to hold OFF files derived from predicted SDFs",
+  "off_directory": "off/",
+  "__comment": "directory in base_directory to hold BINVOX files",
+  "binvox_directory": "binvox/",
+  "__comment": "file to save occupancy results",
+  "results_file": "results.txt"
+
+}

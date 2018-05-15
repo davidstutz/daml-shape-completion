@@ -1,0 +1,81 @@
+{
+  "__comment": "GETTING STARTED",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "(1) download data from davidstutz/shape-completion-benchmark",
+  "__comment": "(2) adapt data_directory",
+  "__comment": "(3) run 'th ml_train.lua'",
+  "__comment": "see README.md for more details",
+
+  "__comment": "DATA PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "base directory for outputs",
+  "data_directory": "/BS/dstutz2/work/backup/shape-completion/cvpr/data/clean/",
+
+  "inference_training_statistics": "real_space_statistics_training_prior.h5",
+
+  "validation_inputs": "validation_inputs_6_48x64_24x54x24_clean_large.h5",
+  "validation_space": "validation_space_6_48x64_24x54x24_clean_large.h5",
+  "validation_lsdf_inputs": "validation_inputs_lsdf_6_48x64_24x54x24_clean_large.h5",
+
+  "validation_outputs": "validation_outputs_6_48x64_24x54x24_clean_large.h5",
+  "validation_lsdf_outputs": "validation_outputs_lsdf_6_48x64_24x54x24_clean_large.h5",
+
+  "validation_gt_txt_directory": "validation_txt_gt_6_48x64_24x54x24_clean_large",
+  "validation_gt_off_directory":"validation_off_gt_6_48x64_24x54x24_clean_large",
+
+  "__comment": "OPTIMIZATION PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "criteria": ["occpointbce", "occspacebce", "sdfpointbce", "sdfspacebce"],
+  "weights": [0.25, 0.25, 0.25, 0.25],
+  "weighted": false,
+
+  "prior_weight": 15,
+
+  "__comment": "number of iterations for inference",
+  "iterations": 5000,
+  "__comment": "number of random sarting values for optimization to use at the same time",
+  "batch_size": 2,
+  "__comment": "average loss and prior by batch and spatial size",
+  "size_average": false,
+  "__comment": "optimizer to choose from optim",
+  "optimizer": "sgd",
+  "__comment": "learning rate to employ",
+  "learning_rate": 0.05,
+  "__comment": "momentum parameter",
+  "momentum": 0.5,
+
+  "__comment": "every decay_iterations iteration, the learning rate and momentum is updated",
+  "decay_iterations": 50,
+  "__comment": "learning rate is mulitplied by this value each decay_iterations",
+  "decay_learning_rate": 0.85,
+  "__comment": "minimum learning rate allowed",
+  "minimum_learning_rate": 0.00001,
+  "__comment": "momentum is multiplied by this value each decay_iterations",
+  "decay_momentum": 1.04,
+  "__comment": "maximum momentum allowed",
+  "maximum_momentum": 0.9,
+
+  "__comment": "report a smoothed loss every loss_iterations",
+  "loss_iterations": 10,
+
+  "__comment": "OUTPUT PARAMETERS",
+  "__comment": "---------------------------------------------------------------",
+
+  "__comment": "base directory for outputs",
+  "base_directory": "clean/",
+
+  "__comment": "model file inside base_directory",
+  "prior_model_file": "prior_model.dat",
+  "__comment": "directory in base_directory to hold OFF files derived from predicted SDFs",
+  "off_directory": "off/",
+  "__comment": "directory in base_directory to hold BINVOX files",
+  "binvox_directory": "binvox/",
+  "__comment": "file to save occupancy results",
+  "results_file": "results.txt",
+
+  "__comment": "file to save protocol of training in",
+  "protocol_file": "protocol.h5"
+}
