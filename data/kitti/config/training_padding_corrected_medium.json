@@ -1,0 +1,76 @@
+{
+  "__comment": "base directory containing the zipped sequences",
+  "velodyne_directory": "/work/data/kitti/training/velodyne/",
+  "label_directory": "/work/data/kitti/training/label_2/",
+  "xml_directory": "/work/data/kitti/2011_09_26",
+  "split_file": "train.txt",
+  "mapping_file": "mapping.txt",
+  "rand_file": "rand.txt",
+
+  "__comment": "subdirectory in sequence/sequence_drive_drive_sync holding",
+  "__comment": "the bounding box files",
+  "bounding_box_directory": "/work/data/kitti/bounding_boxes",
+
+  "__comment": "subdirectory in velodyne_points and cloud_directory",
+  "__comment": "to hold the point clouds as txt or ply",
+  "velodyne_ply_directory": "/work/data/kitti/velodyne_ply",
+  "bounding_box_txt_directory": "/work/data/kitti/bounding_boxes_txt",
+
+  "__comment": "number of preceeding and following point clouds to consider",
+  "gt": false,
+  "gt_range": 50,
+  "gt_skip": 5,
+  "__comment": "holds accumulated BB files for GT computation",
+  "bounding_box_gt_txt_directory": "/work/data/kitti/bounding_boxes_gt_txt",
+  "__comment": "holds accumulated bin files for GT computation",
+  "velodyne_gt_bin_directory": "/work/data/kitti/velodyne_gt_bin",
+  "__comment": "holds GT point clouds",
+  "velodyne_gt_txt_directory": "/work/data/kitti/velodyne_gt_txt",
+  "__comment": "holds individual GT point clouds",
+  "velodyne_individual_gt_txt_directory": "/work/data/kitti/velodyne_individual_gt_txt",
+
+  "__comment": "save the total number of bounding boxes in this file",
+  "num_bounding_box_file": "/work/data/kitti/num_bounding_boxes",
+
+  "__comment": "file to gather all bounding boxes - just for statistics",
+  "bounding_box_file": "/work/data/kitti/bounding_boxes",
+
+  "__comment": "object type to filter for, usually 'Car'",
+  "object_type": "car",
+
+  "__comment": "how many random perturbations per sample",
+  "multiplier": 1,
+
+  "__comment": "padding applied on bounding box, per dimension on both sides",
+  "padding": 0.25,
+
+  "__comment": "slight rotation noise in degrees",
+  "max_y_rotation": 0,
+
+  "__comment": "for filtering",
+  "min_points": 50,
+
+  "__comment": "all bounding boxes will be voxelized in a volume of this shape",
+  "height": 32,
+  "width": 72,
+  "depth": 32,
+
+  "input_file": "/work/data/kitti/input",
+  "input_sdf_file": "/work/data/kitti/input_sdf",
+  "input_gt_file": "/work/data/kitti/input_gt",
+  "input_combined_gt_file": "/work/data/kitti/input_combined_gt",
+  "input_sdf_gt_file": "/work/data/kitti/input_sdf_gt",
+  "input_sdf_combined_gt_file": "/work/data/kitti/input_sdf_combined_gt",
+  "full_space_gt_file": "/work/data/kitti/full_space_gt",
+  "part_space_gt_file": "/work/data/kitti/part_space_gt",
+  "full_space_file": "/work/data/kitti/full_space_file",
+  "part_space_file": "/work/data/kitti/part_space_file",
+  "bounding_box_file_file": "/work/data/kitti/bounding_box_file",
+
+  "truncation": 5,
+  "input_tsdf_file": "/work/data/kitti/input_tsdf",
+  "input_ltsdf_file": "/work/data/kitti/input_ltsdf",
+
+  "statistics_file": "/work/data/kitti/statistics",
+  "vis_dir":  "/work/data/kitti/vis"
+}

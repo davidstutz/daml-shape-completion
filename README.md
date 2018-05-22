@@ -22,6 +22,9 @@ method, called amortized maximum likelihood (AML), described in:
 
 If you use this code for your research, please cite the above papers.
 
+See [davidstutz/cvpr2018-shape-completion](https://github.com/davidstutz/cvpr2018-shape-completion)
+for the LaTeX source of the paper and additional repositories.
+
 ![Illustration of the proposed approach.](screenshot.png?raw=true "Illustration of the proposed approach.")
 
 ## Overview
@@ -45,25 +48,14 @@ grids and signed distance functions are used.
 
 In this repository we provide our implementation of the
 amortized maximum likelihood approach, the maximum likelihood baseline,
-the supervised baseline and related work [1]. Additionally,
-this repository also contains several subrepositories for
-evaluation and visualization, namely
-
-* [davidstutz/mesh-evaluation](https://github.com/davidstutz/mesh-evaluation)
-* [davidstutz/bpy-visualization-utils](https://github.com/davidstutz/bpy-visualization-utils) 
- 
+the supervised baseline and related work [1].
 The repository also contains an adapted version of
 
 * [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16)
- 
-Also consider the following
-related repository:
-
-* [davidstutz/mesh-voxelization](https://github.com/davidstutz/mesh-voxelization)
 
 ## Installation
 
-Requirements:
+LUA/Torch requirements:
 
 * Torch ([torch/distro](https://github.com/torch/distro) recommended);
 * [deepmind/torch-hdf5](https://github.com/deepmind/torch-hdf5);
@@ -73,8 +65,36 @@ Requirements:
 * [nicholas-leonard/cunnx](https://github.com/nicholas-leonard/cunnx);
 * [davidstutz/torch-volumetric-nnup](https://github.com/davidstutz/torch-volumetric-nnup) (see the installation instructions in the repository).
 
-Follow the installation instructions of the linked Torch modules for installation.
-Make sure that `nnx`, `cunnx` and the volumetric nearest neighbor upsampling layer works.
+Installing [deepmind/torch-hdf5](https://github.com/deepmind/torch-hdf5)
+might be tricky. After building orch-hdf5,
+
+    git clone https://github.com/deepmind/torch-hdf5
+    cd torch-hdf5
+    luarocks make hdf5-0-0.rockspec
+    cd ..
+
+it might be necessary to adapt the configuration in case you installed
+HDF5 locally. For example, when installing hdf5 locally in `DB_PATH`,
+`torch/install/share/lua/5.1/hdf5/config.lua` might need
+to be adapted as follows:
+
+    require('os')
+  
+    db_path = os.getenv("DB_PATH")
+    hdf5._config = {
+        HDF5_INCLUDE_PATH = db_path .. "/hdf5/hdf5/include/",
+        HDF5_LIBRARIES = db_path .. "/hdf5/hdf5/lib/libhdf5_cpp.so;" .. db_path .. "/hdf5/hdf5/lib/libhdf5.so;/usr/lib/x86_64-linux-gnu/libpthread.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.so;/usr/lib/x86_64-linux-gnu/libm.so"
+    }
+
+Make sure that `nnx`, `cunnx` and the volumetric nearest neighbor
+upsampling layer works by following the instructions in
+[davidstutz/torch-volumetric-nnup](https://github.com/davidstutz/torch-volumetric-nnup).
+
+The remaining packages can easily be installed using luarocks. You can run
+
+    th check_requirements.lua
+
+to check the packages listed above.
 
 Pyton requirements:
 
@@ -83,7 +103,8 @@ Pyton requirements:
 * [PyMCubes](https://github.com/davidstutz/PyMCubes) (**make sure to use the `voxel_center` branch**).
 
 For installing PyMCubes, follow the instructions [here](https://github.com/davidstutz/PyMCubes);
-NumPy and h5py can be installed using `pip`.
+NumPy and h5py can be installed using `pip` and might themselves
+have dependencies.
 
 We also include an implementation of the method by Engelmann et al. [1].
 
@@ -126,8 +147,8 @@ Then:
     make
     # make sure KittiShapePrior and ShapeNetShapePrior are built correctly
 
-Finally, make sure to download the model files (the PCA shape prior files)
-from [davidstutz/shape-completion-benchmark](https://github.com/davidstutz/shape-completion-benchmark) and put them into `rw/data/matrices/`.
+Also make sure to download the pre-trained PCA shape prior
+from [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16).
 
 For the C++ implementation of the evaluation tool (mesh-to-mesh and point-to-mesh distances),
 follow the instructions here: [davidstutz/mesh-evaluation](https://github.com/davidstutz/mesh-evaluation);
@@ -139,9 +160,7 @@ essentially, the tool requires:
 * OpenMP;
 * C++11.
 
-Make sure to adapt `rw/cmake_modules/FindEigen3.cmake` to include the correct include directory
-and remove `NO_CMAKE_SYSTEM_PATH` if necessary. The same holds for `rw/cmake_modules/FindGLog`
-and `rw/cmake_modules/FindSuiteSparse.cmake`. Then run:
+Make sure to adapt the corresponding CMake modules, then run:
 
     cd mesh-evaluation
     mkdir build
@@ -151,14 +170,20 @@ and `rw/cmake_modules/FindSuiteSparse.cmake`. Then run:
 
 ## Data
 
-The data for the benchmark proposed in the paper can be found here: [davidstutz/shape-completion-benchmark](https://github.com/davidstutz/shape-completion-benchmark).
-Follow the instructions to download the datasets.
+The data is derived from [ShapeNet](https://www.shapenet.org/terms)
+and [KITTI](http://www.cvlibs.net/datasets/kitti/). For ShapeNet,
+two datasets, in the paper referred to as SN-clean and SN-noisy,
+were created. We also provide the simplified cars from ShapeNet, simplified
+using [this semi-convex hull algorithm](http://www.cvlibs.net/software/semi_convex_hull/).
 
-As short summary, the data includes two synthetic datasets. Both provide
-voxelized shapes and synthetsized observations - voxelized into binary occupancy
-and (signed) distance functions - in HDF5 format. Additionally, the original 
-meshes and the observed points are provided as [OFF](https://en.wikipedia.org/wiki/OFF_(file_format)) files and
-TXT files (see the repository for specifications).
+Download links:
+
+* [KITTI (2.7GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_kitti.zip)
+* [SN-clean (5.7GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_clean.zip)
+* [SN-noisy (4.0GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_noisy.zip)
+* [Simplified ShapeNet Cars (38.5MB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_shapenet_models.zip)
+
+**See [Data](data/README.md) for more details.**
 
 Make sure to cite [3] and [4] in addition to this paper when using the data.
 
@@ -169,15 +194,45 @@ Make sure to cite [3] and [4] in addition to this paper when using the data.
 
 ## Models
 
-The model for [1] can be found at
-[VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16).
+The models can be downloaded from: [Models](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_models.zip).
+The model for [1] is available at [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16).
 
-## Getting Started
+The downloaded ZIP-archive contains the pre-trained models as
+`.dat` files for the shape prior (`vae`), the proposed weakly-supervised
+approach (`daml`) and the supervised baseline (`sup`):
 
-First, the datasets from [davidstutz/shape-completion-benchmark](https://github.com/davidstutz/shape-completion-benchmark)
-are needed.
+    clean/
+    |- vae/
+       |- prior_model.dat
+    |- daml/
+       |- inference_model.dat
+    |- sup/
+       |- inference_model.dat
+    noisy/
+    |- daml/
+       |- inference_model.dat
+    |- sup/
+       |- inference_model.dat
+    kitti/
+    |- daml/
+       |- inference_model.dat
 
-Then, make sure that all requirements are met, for example run
+These models have been saved using `data/tools/lua/compress_model_dat.lua`
+in order to reduce their size.
+
+For running a model, it is sufficient to extract the corresponding
+model in the correct `base_directory` as specified in the configuration files.
+For example, for running the shape prior, create the folder `vae/clean` (as
+determined by `vae/clean.json`) and put `prior_model.dat` inside this folder.
+Then:
+
+    th vae_run.lua clean.json
+
+For more details, see the training instructions below.
+
+## Experiments
+
+Make sure that data is downloaded and all requirements are met, for example run
 `check_requirements.lua` and `check_requirements.py`; also
 build the evaluation tool from
 [davidstutz/mesh-evaluation](https://github.com/davidstutz/mesh-evaluation)
@@ -203,10 +258,10 @@ be found in `vae/clean.json` where all configuration options are commented.
 
 The next step is to train a new encoder:
 
-* Change to the `aml` directory.
+* Change to the `daml` directory.
 * Create a directory `clean` and copy `prior_model.dat` from `vae/clean`
   (after training the shape prior!).
-* Adapt the configuration file `aml/clean.json`; specifically,
+* Adapt the configuration file `daml/clean.json`; specifically,
   set the `data_directory` to the correct location of the downloaded
   "clean" dataset.
 * Run
@@ -239,7 +294,7 @@ For evaluating the shape prior:
 
 For evaluating the inference model:
 
-* Change to the `aml` directory.
+* Change to the `daml` directory.
 * Check that the `clean` directory contains `prior_model.dat` and
   `inference_model.dat` (indicating that training succeeded) and a set of
   `*_predictions.h5` files.
@@ -305,7 +360,7 @@ To train the supervised baseline:
 * Finally, use [davidstutz/mesh-evaluation](https://github.com/davidstutz/mesh-evaluation) to evaluate the meshes in `clean/off`
   against the ground truth meshes as downloaded with the data.
 
-#### Related Work
+#### Engelmann et al. Baseline
 
 First, make sure that the work by Engelmann et al. [1] can be compiled
 as outlined in [Installation](#installation).
@@ -315,9 +370,8 @@ Then, two command line tools are provided:
 * `KittiShapePrior` for running the approach on KITTI; arguments are
   the input directory with point clouds as `.txt` files, a `.txt` file containing
   the correpsonding bounding boxes, and the output directory.
-* `ShapeNetShapePrior` for running the approach on ShapeNet ("clean" and "noisy" as
-  provided in [davidstutz/shape-completion-benchmark](https://github.com/davidstutz/shape-completion-benchmark)); arguments
-  are the input directory containing the point clouds as `.txt` files,
+* `ShapeNetShapePrior` for running the approach on ShapeNet ("clean" and "noisy");
+  arguments are the input directory containing the point clouds as `.txt` files,
   and the output directory.
 
 Running the approach on ShapeNet might look as follows:
@@ -339,37 +393,38 @@ as second argument as well.
 
 ### Visualization
 
-The original meshes included in [davidstutz/shape-completion-benchmark](https://github.com/davidstutz/shape-completion-benchmark)
+The original meshes included in the data downloads
 as well as the predicted meshes (of both the shape prior and shape inference)
 can be visualized using [MeshLab](http://www.meshlab.net/).
 
 The [davidstutz/bpy-visualization-utils](https://github.com/davidstutz/davidstutz/bpy-visualization-utils)
-repository also provides utilities for visualization.
+repository also provides utilities for visualization using Blender
+and Python.
 
 ## License
 
-Check the following repositories for licenses on part of the provided software:
+Note that the data is based on [ShapeNet](https://www.shapenet.org/terms) [1],
+and [KITTI](http://www.cvlibs.net/datasets/kitti/) [2].
+Check the corresponding websites for licenses.
+The derived benchmarks are licensed as
+[CC BY-NC-SA 3.0](Attribution-https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
-* [dimatura/binvox-rw-py](https://github.com/dimatura/binvox-rw-py)
-* [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16)
-* [Tronic/cmake-modules](https://github.com/Tronic/cmake-modules)
+The code includes snippets from the following repositories:
 
-I also want to acknowledge the help by
-[Francis Engelmann](https://www.vision.rwth-aachen.de/person/14/)
-on [VisualComputingInstitute/ShapePriors_GCPR16](https://github.com/VisualComputingInstitute/ShapePriors_GCPR16).
-
-Also check the subrepositories for license details and the licenses
-of third party code included; namely:
-
-* [davidstutz/mesh-evaluation](https://github.com/davidstutz/mesh-evaluation)
-* [davidstutz/bpy-visualization-utils](https://github.com/davidstutz/bpy-visualization-utils) 
-* [davidstutz/mesh-voxelization](https://github.com/davidstutz/mesh-voxelization)
-
-For example, these repositories contain code from:
-
-* [alextsui05/blender-off-addon](https://github.com/alextsui05/blender-off-addon)
-* [Tomas Akenine-Möller](http://fileadmin.cs.lth.se/cs/Personal/Tomas_Akenine-Moller/code/)
+* [pyrender](https://github.com/griegler/pyrender)
+* [pyfusion](https://github.com/griegler/pyfusion)
+* [Tomas_Akenine-Möller](http://fileadmin.cs.lth.se/cs/Personal/Tomas_Akenine-Moller/code/)
+* [KITTI](http://www.cvlibs.net/datasets/kitti/)
+* [Box-Ray Intersection](http://www.cs.utah.edu/~awilliam/box/)
+* [Tomas Akenine-Möller Code](http://fileadmin.cs.lth.se/cs/Personal/Tomas_Akenine-Moller/code/)
+* [griegler/pyrender](https://github.com/griegler/pyrender)
 * [christopherbatty/SDFGen](https://github.com/christopherbatty/SDFGen)
+* [High-Resolution Timer](http://www.songho.ca/misc/timer/timer.html)
+* [Tronic/cmake-modules](https://github.com/Tronic/cmake-modules)
+* [dimatura/binvox-rw-py](https://github.com/dimatura/binvox-rw-py)
+* [alextsui05/blender-off-addon](https://github.com/alextsui05/blender-off-addon)
+
+The remaining code is licensed as follows:
 
 Copyright (c) 2018 David Stutz
 

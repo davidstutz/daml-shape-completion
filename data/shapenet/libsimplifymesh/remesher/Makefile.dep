@@ -1,0 +1,18 @@
+main.o: main.cc libremesh/modelwriter.h libremesh/defines.h \
+ libremesh/trianglemesh.h libremesh/refptr.h \
+ libremesh/refptr_mt.h libremesh/thread.h \
+ libremesh/thread_posix.h libremesh/vec3.h libremesh/defines.h \
+ libremesh/hrtimer.h libremesh/interface.h \
+ libremesh/vertexinfo.h libremesh/refptrarray.h \
+ libremesh/vertexref.h libremesh/vec2.h \
+ libremesh/simplification.h libremesh/plane.h \
+ libremesh/densityfield.h libremesh/featureedges.h \
+ libremesh/oversampling.h libremesh/resampling.h \
+ libremesh/meshskeleton.h libremesh/meshdecimation.h \
+ libremesh/meshcleanup.h libremesh/relaxlloyd.h \
+ libremesh/microdelaunay.h libremesh/polygon2.h \
+ libremesh/micropatch.h libremesh/relaxation.h \
+ libremesh/relocation.h libremesh/triangle2.h \
+ libremesh/matrix2.h libremesh/patchcache.h libremesh/patch2d.h \
+ libremesh/patch3d.h libremesh/relaxarea.h
+ 

@@ -1,4 +1,4 @@
--- Train an auto-encoder using config.json.
+-- Run model on config.json.
 
 require('torch')
 require('nn')
@@ -27,6 +27,10 @@ end
 if cutorch.isCachingAllocatorEnabled() then
   print('[Training] caching allocator enabled')
 end
+
+-- ---------------------------------------------------------------
+-- Read configuration and data.
+-- ---------------------------------------------------------------
 
 -- Load configuration.
 configFile = 'clean.json'
@@ -58,16 +62,30 @@ valInputs_1 = checkAndRead(config['data_directory'] .. config['validation_inputs
 valInputs_2 = checkAndRead(config['data_directory'] .. config['validation_lsdf_inputs'])
 valInputs = torch.cat({valInputs_1:float(), valInputs_2}, 2)
 
-model = torch.load(config['base_directory'] .. config['inference_model_file'])
+-- ---------------------------------------------------------------
+-- Read model.
+-- ---------------------------------------------------------------
+
+modelFile = config['base_directory'] .. config['inference_model_file']
+if not lib.utils.fileExists(modelFile) then
+  print('[Error] Model file ' .. modelFile .. ' not found.')
+  print('[Error] Check the README to download the models and put the correct model in base_directory.')
+  os.exit()
+end
+
+model = torch.load(modelFile)
 decoder = model.modules[2]
 print(model)
+
+-- ---------------------------------------------------------------
+-- Run model.
+-- ---------------------------------------------------------------
 
 local valN = valInputs:size(1)
 local valBatchSize = 64
 local valNumBatches = math.floor(valN/valBatchSize)
 
 local accValPreds = nil
-
 for b = 0, valNumBatches do
   local batchStart = b*valBatchSize + 1
   local batchLength = math.min((b + 1)*valBatchSize - b*valBatchSize, valN - b*valBatchSize)
@@ -83,7 +101,7 @@ for b = 0, valNumBatches do
   accValPreds = lib.utils.appendTensor(accValPreds, valPreds)
 
   local time = os.date("*t")
-  print('[Validation] ' .. (b + 1)*valBatchSize .. '|' .. valNumBatches*valBatchSize .. '|' .. time.hour .. ':' .. time.min .. ':' .. time.sec)
+  print('[Validation] ' .. (b + 1)*valBatchSize .. '|' .. valNumBatches*valBatchSize)
 end
 
 local predFile = config['base_directory'] .. '0_predictions.h5'

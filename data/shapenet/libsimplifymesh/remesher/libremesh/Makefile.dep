@@ -1,0 +1,178 @@
+interface.o: interface.cc exception.h defines.h modelloader.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h \
+ meshcleanup.h vertexinfo.h refptrarray.h delaunayflips.h edgeflips.h \
+ featureedges.h meshoptimize.h resampling.h vertexref.h vec2.h \
+ densityfield.h meshskeleton.h meshdecimation.h permute.h interface.h \
+ simplification.h plane.h oversampling.h relaxlloyd.h microdelaunay.h \
+ polygon2.h micropatch.h relaxation.h relocation.h triangle2.h matrix2.h \
+ patchcache.h patch2d.h patch3d.h relaxarea.h
+modelwriter.o: modelwriter.cc exception.h defines.h modelwriter.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h
+modelloader.o: modelloader.cc helpers.h defines.h exception.h \
+ modelloader.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h vec3.h
+trianglemesh.o: trianglemesh.cc trianglemesh.h defines.h refptr.h \
+ refptr_mt.h thread.h thread_posix.h vec3.h
+helpers.o: helpers.cc exception.h defines.h helpers.h
+averageplane.o: averageplane.cc exception.h defines.h averageplane.h \
+ vec3.h plane.h ../libgmm/gmm_matrix.h ../libgmm/gmm_vector.h \
+ ../libgmm/gmm_interface.h ../libgmm/gmm_blas.h ../libgmm/gmm_scaled.h \
+ ../libgmm/gmm_def.h ../libgmm/gmm_ref.h ../libgmm/gmm_except.h \
+ ../libgmm/gmm_std.h ../libgmm/gmm_transposed.h \
+ ../libgmm/gmm_conjugated.h ../libgmm/gmm_sub_index.h \
+ ../libgmm/gmm_sub_vector.h ../libgmm/gmm_sub_matrix.h \
+ ../libgmm/gmm_dense_qr.h ../libgmm/gmm_dense_Householder.h \
+ ../libgmm/gmm_kernel.h ../libgmm/gmm_real_part.h \
+ ../libgmm/gmm_vector_to_matrix.h ../libgmm/gmm_matrix.h \
+ ../libgmm/gmm_tri_solve.h ../libgmm/gmm_blas_interface.h
+micropatch.o: micropatch.cc exception.h defines.h micropatch.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h \
+ vec2.h
+microdelaunay.o: microdelaunay.cc exception.h defines.h triangle2.h \
+ vec2.h vec3.h matrix2.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h straightline2.h microdelaunay.h polygon2.h micropatch.h \
+ densitytriangle2.h matrix3.h
+relocation.o: relocation.cc exception.h defines.h patch3d.h refptr.h \
+ refptr_mt.h thread.h thread_posix.h vertexinfo.h refptrarray.h \
+ trianglemesh.h vec3.h relocation.h vertexref.h vec2.h triangle2.h \
+ matrix2.h patchcache.h patch2d.h
+polygon2.o: polygon2.cc exception.h defines.h straightline2.h vec2.h \
+ polygon2.h
+triangulator.o: triangulator.cc plane.h vec3.h defines.h triangulator.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vertexinfo.h \
+ refptrarray.h
+simplification.o: simplification.cc exception.h defines.h elapsedtimer.h \
+ straightline3.h vec3.h plane.h averageplane.h meshcleanup.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vertexinfo.h \
+ refptrarray.h triangulator.h simplification.h densityfield.h vec2.h \
+ featureedges.h
+meshcleanup.o: meshcleanup.cc elapsedtimer.h defines.h exception.h \
+ meshcleanup.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h vec3.h vertexinfo.h refptrarray.h
+meshoptimize.o: meshoptimize.cc permute.h defines.h exception.h \
+ elapsedtimer.h meshoptimize.h trianglemesh.h refptr.h refptr_mt.h \
+ thread.h thread_posix.h vec3.h vertexinfo.h refptrarray.h
+oversampling.o: oversampling.cc meshslicing.h defines.h trianglemesh.h \
+ refptr.h refptr_mt.h thread.h thread_posix.h vec3.h vertexinfo.h \
+ refptrarray.h plane.h subdivloop.h featureedges.h subdivbase.h \
+ subdivlinear.h elapsedtimer.h oversampling.h densityfield.h vec2.h \
+ vertexref.h
+meshslicing.o: meshslicing.cc vec3.h defines.h exception.h triangulator.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vertexinfo.h \
+ refptrarray.h meshslicing.h plane.h
+relaxation.o: relaxation.cc exception.h defines.h delaunayflips.h \
+ edgeflips.h trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h \
+ vec3.h vertexinfo.h refptrarray.h featureedges.h elapsedtimer.h \
+ triangle3.h vec2.h relaxation.h densityfield.h vertexref.h relocation.h \
+ triangle2.h matrix2.h patchcache.h patch2d.h patch3d.h microdelaunay.h \
+ polygon2.h micropatch.h pntriangle.h
+relaxanglesmooth.o: relaxanglesmooth.cc relaxanglesmooth.h defines.h \
+ relaxation.h vec2.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h vec3.h vertexinfo.h refptrarray.h densityfield.h \
+ featureedges.h vertexref.h relocation.h triangle2.h matrix2.h \
+ patchcache.h patch2d.h patch3d.h microdelaunay.h polygon2.h micropatch.h
+subdivbase.o: subdivbase.cc elapsedtimer.h defines.h subdivbase.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h \
+ vertexinfo.h refptrarray.h featureedges.h
+subdivlinear.o: subdivlinear.cc exception.h defines.h subdivlinear.h \
+ subdivbase.h trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h \
+ vec3.h vertexinfo.h refptrarray.h featureedges.h
+subdivloop.o: subdivloop.cc exception.h defines.h subdivloop.h \
+ featureedges.h refptrarray.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h vertexinfo.h trianglemesh.h vec3.h subdivbase.h
+meshdecimation.o: meshdecimation.cc exception.h defines.h averageplane.h \
+ vec3.h plane.h triangulator.h trianglemesh.h refptr.h refptr_mt.h \
+ thread.h thread_posix.h vertexinfo.h refptrarray.h meshcleanup.h \
+ meshdecimation.h featureedges.h
+edgeflips.o: edgeflips.cc elapsedtimer.h defines.h exception.h \
+ edgeflips.h trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h \
+ vec3.h vertexinfo.h refptrarray.h featureedges.h
+delaunayflips.o: delaunayflips.cc delaunayflips.h defines.h edgeflips.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h \
+ vertexinfo.h refptrarray.h featureedges.h
+resampling.o: resampling.cc helpers.h defines.h exception.h triangle3.h \
+ vec2.h vec3.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h meshskeleton.h featureedges.h refptrarray.h vertexinfo.h \
+ incdelaunay.h halfedge.h delaunayflips.h edgeflips.h gslpolysolve.h \
+ resampling.h vertexref.h densityfield.h meshdecimation.h meshcleanup.h
+incdelaunay.o: incdelaunay.cc exception.h defines.h incdelaunay.h vec2.h \
+ vec3.h halfedge.h
+vertexinfo.o: vertexinfo.cc exception.h defines.h vertexinfo.h \
+ refptrarray.h refptr.h refptr_mt.h thread.h thread_posix.h \
+ trianglemesh.h vec3.h
+vertexref.o: vertexref.cc exception.h defines.h vertexref.h refptrarray.h \
+ refptr.h refptr_mt.h thread.h thread_posix.h trianglemesh.h vec3.h \
+ vertexinfo.h vec2.h
+patch3d.o: patch3d.cc modelwriter.h defines.h trianglemesh.h refptr.h \
+ refptr_mt.h thread.h thread_posix.h vec3.h patch3d.h vertexinfo.h \
+ refptrarray.h
+patch2d_fb.o: patch2d_fb.cc ../libgmm/gmm_dense_Householder.h \
+ ../libgmm/gmm_kernel.h ../libgmm/gmm_def.h ../libgmm/gmm_ref.h \
+ ../libgmm/gmm_except.h ../libgmm/gmm_std.h ../libgmm/gmm_blas.h \
+ ../libgmm/gmm_scaled.h ../libgmm/gmm_transposed.h \
+ ../libgmm/gmm_conjugated.h ../libgmm/gmm_real_part.h \
+ ../libgmm/gmm_vector.h ../libgmm/gmm_interface.h \
+ ../libgmm/gmm_sub_index.h ../libgmm/gmm_sub_vector.h \
+ ../libgmm/gmm_sub_matrix.h ../libgmm/gmm_vector_to_matrix.h \
+ ../libgmm/gmm_matrix.h ../libgmm/gmm_tri_solve.h \
+ ../libgmm/gmm_blas_interface.h ../libgmm/gmm_matrix.h \
+ ../libgmm/gmm_iter_solvers.h ../libgmm/gmm_iter.h \
+ ../libgmm/gmm_precond_diagonal.h ../libgmm/gmm_precond.h \
+ ../libgmm/gmm_precond_ildlt.h ../libgmm/gmm_precond_ildltt.h \
+ ../libgmm/gmm_precond_ilut.h ../libgmm/gmm_precond_mr_approx_inverse.h \
+ ../libgmm/gmm_precond_ilu.h ../libgmm/gmm_precond_ilutp.h \
+ ../libgmm/gmm_solver_cg.h ../libgmm/gmm_solver_bicgstab.h \
+ ../libgmm/gmm_solver_qmr.h ../libgmm/gmm_solver_constrained_cg.h \
+ ../libgmm/gmm_solver_Schwarz_additive.h \
+ ../libgmm/gmm_superlu_interface.h ../libgmm/gmm_solver_gmres.h \
+ ../libgmm/gmm_modified_gram_schmidt.h ../libgmm/gmm_solver_Newton.h \
+ ../libgmm/gmm_solver_bfgs.h ../libgmm/gmm_least_squares_cg.h \
+ elapsedtimer.h defines.h exception.h modelwriter.h trianglemesh.h \
+ refptr.h refptr_mt.h thread.h thread_posix.h vec3.h patch2d_fb.h \
+ patch3d.h vertexinfo.h refptrarray.h
+patch2d.o: patch2d.cc ../libgmm/gmm_dense_Householder.h \
+ ../libgmm/gmm_kernel.h ../libgmm/gmm_def.h ../libgmm/gmm_ref.h \
+ ../libgmm/gmm_except.h ../libgmm/gmm_std.h ../libgmm/gmm_blas.h \
+ ../libgmm/gmm_scaled.h ../libgmm/gmm_transposed.h \
+ ../libgmm/gmm_conjugated.h ../libgmm/gmm_real_part.h \
+ ../libgmm/gmm_vector.h ../libgmm/gmm_interface.h \
+ ../libgmm/gmm_sub_index.h ../libgmm/gmm_sub_vector.h \
+ ../libgmm/gmm_sub_matrix.h ../libgmm/gmm_vector_to_matrix.h \
+ ../libgmm/gmm_matrix.h ../libgmm/gmm_tri_solve.h \
+ ../libgmm/gmm_blas_interface.h ../libgmm/gmm_matrix.h \
+ ../libgmm/gmm_iter_solvers.h ../libgmm/gmm_iter.h \
+ ../libgmm/gmm_precond_diagonal.h ../libgmm/gmm_precond.h \
+ ../libgmm/gmm_precond_ildlt.h ../libgmm/gmm_precond_ildltt.h \
+ ../libgmm/gmm_precond_ilut.h ../libgmm/gmm_precond_mr_approx_inverse.h \
+ ../libgmm/gmm_precond_ilu.h ../libgmm/gmm_precond_ilutp.h \
+ ../libgmm/gmm_solver_cg.h ../libgmm/gmm_solver_bicgstab.h \
+ ../libgmm/gmm_solver_qmr.h ../libgmm/gmm_solver_constrained_cg.h \
+ ../libgmm/gmm_solver_Schwarz_additive.h \
+ ../libgmm/gmm_superlu_interface.h ../libgmm/gmm_solver_gmres.h \
+ ../libgmm/gmm_modified_gram_schmidt.h ../libgmm/gmm_solver_Newton.h \
+ ../libgmm/gmm_solver_bfgs.h ../libgmm/gmm_least_squares_cg.h \
+ elapsedtimer.h defines.h exception.h modelwriter.h trianglemesh.h \
+ refptr.h refptr_mt.h thread.h thread_posix.h vec3.h patch2d.h patch3d.h \
+ vertexinfo.h refptrarray.h
+densityfield.o: densityfield.cc elapsedtimer.h defines.h exception.h \
+ triangle3.h vec2.h vec3.h trianglemesh.h refptr.h refptr_mt.h thread.h \
+ thread_posix.h densityfield.h refptrarray.h vertexinfo.h featureedges.h
+featureedges.o: featureedges.cc exception.h defines.h matrix3.h vec3.h \
+ elapsedtimer.h featureedges.h refptrarray.h refptr.h refptr_mt.h \
+ thread.h thread_posix.h vertexinfo.h trianglemesh.h
+meshskeleton.o: meshskeleton.cc exception.h defines.h meshskeleton.h \
+ refptr.h refptr_mt.h thread.h thread_posix.h featureedges.h \
+ refptrarray.h vertexinfo.h trianglemesh.h vec3.h
+patchcache.o: patchcache.cc patchcache.h defines.h refptr.h refptr_mt.h \
+ thread.h thread_posix.h patch2d.h patch3d.h vertexinfo.h refptrarray.h \
+ trianglemesh.h vec3.h
+pntriangle.o: pntriangle.cc exception.h defines.h pntriangle.h \
+ trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h vec3.h \
+ featureedges.h refptrarray.h vertexinfo.h vec2.h
+meshstats.o: meshstats.cc meshstats.h defines.h trianglemesh.h refptr.h \
+ refptr_mt.h thread.h thread_posix.h vec3.h vertexinfo.h refptrarray.h
+cvtstats.o: cvtstats.cc microdelaunay.h defines.h polygon2.h vec2.h \
+ micropatch.h trianglemesh.h refptr.h refptr_mt.h thread.h thread_posix.h \
+ vec3.h cvtstats.h densityfield.h refptrarray.h vertexinfo.h \
+ featureedges.h vertexref.h
+gslpolysolve.o: gslpolysolve.cc

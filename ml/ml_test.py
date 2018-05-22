@@ -118,6 +118,6 @@ if __name__ == '__main__':
             print('[Validation] sdf error+thresh: ' + str(sdf_error_thresh))
 
             print('[Validation] INSTRUCTIONS:')
-            print('[Validation] You can use the tools in lib/blender to visualize the generated OFF and BINVOX files.')
+            print('[Validation] You can visualize the generated OFF and BINVOX files.')
             print('[Validation] The evaluation results can be found in ' + results_file + '.')
             print('[Validation] To evaluate the mesh-to-mesh distance, please consult the documentation.')
