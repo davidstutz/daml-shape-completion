@@ -178,10 +178,10 @@ using [this semi-convex hull algorithm](http://www.cvlibs.net/software/semi_conv
 
 Download links:
 
-* [KITTI (2.7GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_kitti.zip)
-* [SN-clean (5.7GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_clean.zip)
-* [SN-noisy (4.0GB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_noisy.zip)
-* [Simplified ShapeNet Cars (38.5MB)](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_shapenet_models.zip)
+* KITTI (2.7GB): [Amazon AWS](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_kitti.zip) [MPI-INF](https://datasets.d2.mpi-inf.mpg.de/cvpr2018-shape-completion/cvpr2018_shape_completion_kitti.zip)
+* SN-clean (5.7GB): [Amazon AWS](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_clean.zip) [MPI-INF](https://datasets.d2.mpi-inf.mpg.de/cvpr2018-shape-completion/cvpr2018_shape_completion_clean.zip)
+* SN-noisy (4.0GB): [Amazon AWS](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_noisy.zip) [MPI-INF](https://datasets.d2.mpi-inf.mpg.de/cvpr2018-shape-completion/cvpr2018_shape_completion_noisy.zip)
+* Simplified ShapeNet Cars (38.5MB): [Amazon AWS](https://s3.eu-central-1.amazonaws.com/avg-shape-completion/cvpr2018_shape_completion_shapenet_models.zip) [MPI-INF](https://datasets.d2.mpi-inf.mpg.de/cvpr2018-shape-completion/cvpr2018_shape_completion_shapenet_models.zip)
 
 **See [Data](data/README.md) for more details.**
 
