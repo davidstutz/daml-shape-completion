@@ -55,6 +55,8 @@ The repository also contains an adapted version of
 
 ## Installation
 
+**[sumanthrao1997/daml_shape_completion_docker](https://github.com/sumanthrao1997/daml_shape_completion_docker) includes a docker to run the code in this repository.**
+
 LUA/Torch requirements:
 
 * Torch ([torch/distro](https://github.com/torch/distro) recommended);
